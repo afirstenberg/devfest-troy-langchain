@@ -24,7 +24,4 @@
     <option name="IGNORE_EXTERNALS" value="false" />
     <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
   </component>
-  <component name="VcsManagerConfiguration">
-    <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-  </component>
 </project>
