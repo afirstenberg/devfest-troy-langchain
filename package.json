@@ -1,6 +1,7 @@
 {
   "name": "devfest-troy-langchain",
   "version": "1.0.0",
+  "type": "module",
   "description": "Illustrative code for Devfest Troy 2025",
   "main": "dist/index.js",
   "scripts": {
