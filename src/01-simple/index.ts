@@ -6,8 +6,10 @@ const model = new ChatGoogle({
   model: modelName,
 });
 
+const prompt = process.argv[2] || "Who are you?";
+
 const messages: BaseMessage[] = [
-  new HumanMessage("Who are you?"),
+  new HumanMessage( prompt ),
 ];
 
 const response = await model.invoke( messages );
