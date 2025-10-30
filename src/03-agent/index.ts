@@ -1,11 +1,15 @@
 import * as z from "zod";
 import { ChatGoogle } from "@langchain/google-gauth";
 import { BaseMessage, HumanMessage } from "@langchain/core/messages";
-import { DynamicStructuredTool, tool } from "@langchain/core/tools";
+import { type StructuredTool, tool } from "@langchain/core/tools";
 import { createAgent } from "langchain";
+import { lastMsg, msgsToTxt } from "../util.js";
 
-const getWeatherFunc = function( city: string ): string {
-  return `It's always sunny in ${city}`;
+type getWeatherParams = {
+  city: string
+}
+const getWeatherFunc = function( params: getWeatherParams ): string {
+  return `It's always sunny in ${params.city}`;
 }
 const getWeatherFields = {
   name: "get_weather",
@@ -14,9 +18,9 @@ const getWeatherFields = {
     city: z.string(),
   })
 }
-const getWeather: DynamicStructuredTool = tool( getWeatherFunc, getWeatherFields );
+const getWeather: StructuredTool = tool( getWeatherFunc, getWeatherFields );
 
-const tools: DynamicStructuredTool[] = [
+const tools: StructuredTool[] = [
   getWeather,
 ]
 
@@ -39,7 +43,9 @@ const response = await agent.invoke({
   messages
 });
 
+const responseMessages: BaseMessage[] = response.messages;
+const lastMessage: BaseMessage | undefined = lastMsg( responseMessages );
+
 // console.log( JSON.stringify(response, null, 1) );
-const responseMessages: BaseMessage[] = response.messages ?? [];
-const lastMessage: BaseMessage | undefined = responseMessages[ responseMessages.length - 1 ];
+// console.log( msgsToTxt(responseMessages) );
 console.log( lastMessage?.text );

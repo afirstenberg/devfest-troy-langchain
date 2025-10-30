@@ -3,8 +3,11 @@ import { ChatGoogle } from "@langchain/google-gauth";
 import { BaseMessage, HumanMessage } from "@langchain/core/messages";
 import { DynamicStructuredTool, tool } from "@langchain/core/tools";
 
-const getWeatherFunc = function( city: string ): string {
-  return `It's always sunny in ${city}`;
+type getWeatherParams = {
+  city: string
+}
+const getWeatherFunc = function( params: getWeatherParams ): string {
+  return `It's always sunny in ${params.city}`;
 }
 const getWeatherFields = {
   name: "get_weather",
