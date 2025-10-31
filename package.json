@@ -1,6 +1,7 @@
 {
   "name": "devfest-troy-langchain",
   "version": "1.0.0",
+  "type": "module",
   "description": "Illustrative code for Devfest Troy 2025",
   "main": "dist/index.js",
   "scripts": {
@@ -14,5 +15,10 @@
   "devDependencies": {
     "@types/node": "^24.9.2",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@langchain/core": "^1.0.2",
+    "@langchain/google-gauth": "^1.0.0",
+    "langchain": "^1.0.2"
   }
 }
